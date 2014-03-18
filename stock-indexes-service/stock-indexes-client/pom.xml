@@ -1,12 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>pl.edu.agh.iosr.sis</groupId>
-	<artifactId>stock-indexes-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>StockIndexesProvider</name>
-	<description>Parent project for stock indexes service</description>
+	<parent>
+		<groupId>pl.edu.agh.iosr.sis</groupId>
+		<artifactId>stock-indexes-service</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>pl.edu.agh.iosr.sis.client</groupId>
+	<artifactId>stock-indexes-client</artifactId>
+	<packaging>war</packaging>
+	<name>StockIndexesClient</name>
+	<description>Web applications which presents data about stock indexes</description>
 	<developers>
 		<developer>
 			<name>Aleksander Żarnowski</name>
@@ -15,8 +19,4 @@
 			<name>Konrad Jakubiec</name>
 		</developer>
 	</developers>
-	<modules>
-		<module>stock-indexes-provider</module>
-		<module>stock-indexes-client</module>
-	</modules>
 </project>
