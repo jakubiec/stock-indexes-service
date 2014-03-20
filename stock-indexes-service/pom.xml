@@ -19,4 +19,71 @@
 		<module>stock-indexes-provider</module>
 		<module>stock-indexes-client</module>
 	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<reportPlugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>2.9</version>
+							<reportSets>
+								<reportSet>
+									<id>aggregate</id>
+									<reports>
+										<report>aggregate</report>
+									</reports>
+								</reportSet>
+							</reportSets>
+							<configuration>
+								<!-- Here you can add special configurations for your javadoc, if 
+									needed -->
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.codehaus.sonar-plugins</groupId>
+							<artifactId>maven-report</artifactId>
+						</plugin>
+					</reportPlugins>
+				</configuration>
+			</plugin>
+		</plugins>
+
+
+	</build>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
 </project>
