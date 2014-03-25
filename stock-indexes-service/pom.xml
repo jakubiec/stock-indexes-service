@@ -18,6 +18,7 @@
 	<modules>
 		<module>stock-indexes-provider</module>
 		<module>stock-indexes-client</module>
+		<module>stock-indexes-core</module>
 	</modules>
 
 	<properties>
