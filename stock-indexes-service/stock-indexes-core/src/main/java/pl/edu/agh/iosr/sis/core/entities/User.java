@@ -12,6 +12,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
+/**
+ * Entity for <i>users</i> table.
+ * @author konrad
+ *
+ */
 @Entity
 @Table(name = "users")
 public class User {

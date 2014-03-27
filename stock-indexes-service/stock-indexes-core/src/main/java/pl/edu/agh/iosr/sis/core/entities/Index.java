@@ -4,6 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Entity for <i>indexes</i> table.
+ * @author konrad
+ *
+ */
 @Entity
 @Table(name="indexes")
 public class Index {
