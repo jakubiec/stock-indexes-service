@@ -8,7 +8,6 @@ import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +23,6 @@ import pl.edu.agh.iosr.sis.core.entities.IndexValueId;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/testContext.xml" })
-@Transactional
 public class IndexValueDAOTest {
 	
 	private static final String TEST_ID = "TEST1";
@@ -53,16 +51,14 @@ public class IndexValueDAOTest {
 		clearDB();
 	}
 	
-	@After
-	public void after(){
-		clearDB();
-	}
-
+	@Transactional
 	private void clearDB() {
 		IndexValue iv = em.find(IndexValue.class, id);
 		if( iv != null)
 			em.remove(iv);
 	}
+	
+	
 	@Test
 	public void saveTest(){
 	

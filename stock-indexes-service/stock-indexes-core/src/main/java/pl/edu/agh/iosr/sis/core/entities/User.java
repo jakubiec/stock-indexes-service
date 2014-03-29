@@ -1,9 +1,12 @@
 package pl.edu.agh.iosr.sis.core.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,8 +17,9 @@ import javax.persistence.JoinColumn;
 
 /**
  * Entity for <i>users</i> table.
+ * 
  * @author konrad
- *
+ * 
  */
 @Entity
 @Table(name = "users")
@@ -29,18 +33,17 @@ public class User {
 
 	private String password;
 
+	@Column(name = "is_admin")
 	private Boolean isAdmin;
 
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name = "available_indexes", 
-		joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, 
-		inverseJoinColumns = { @JoinColumn(name = "index_symbol", referencedColumnName = "symbol") })
-	private Set<Index> availableIndexes;
-	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "available_indexes", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "index_symbol", referencedColumnName = "symbol") })
+	private Set<Index> availableIndexes = new HashSet<Index>();
+
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -68,14 +71,18 @@ public class User {
 	public void setIsAdmin(Boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	
-	public void addAvailableIndex(Index index){
+
+	public void addAvailableIndex(Index index) {
 		this.availableIndexes.add(index);
 	}
-	
-	public void removeAvailableIndex(Index index){
-		if(availableIndexes.contains(index))
+
+	public void removeAvailableIndex(Index index) {
+		if (availableIndexes.contains(index))
 			availableIndexes.remove(index);
+	}
+
+	public Set<Index> getAvailableIndexes() {
+		return availableIndexes;
 	}
 
 }
