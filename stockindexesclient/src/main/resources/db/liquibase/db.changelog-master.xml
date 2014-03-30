@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+						http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+	
+	<changeSet id="201403301527" author="sis_azarnowski">
+		<preConditions onFail="MARK_RAN" onFailMessage="Table INDEXES already exists">
+			<not>
+				<tableExists tableName="indexes"/>
+			</not>
+		</preConditions>
+		<comment>Creates INDEXES table</comment>
+		
+		<createTable tableName="indexes">
+			<column name="symbol" type="varchar(100)">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="symbol_pk"/>
+			</column>
+		</createTable>
+		
+		<rollback>
+			<dropTable tableName="indexes"/>
+		</rollback>
+	</changeSet>
+	
+	<changeSet id="201403301528" author="sis_azarnowski">
+		<preConditions onFail="MARK_RAN" onFailMessage="Table INDEX_VALUES already exists">
+			<not>
+				<tableExists tableName="index_values"/>
+			</not>
+		</preConditions>
+		<comment>Creates INDEX_VALUES table</comment>
+		
+		<createTable tableName="index_values">
+			<column name="symbol" type="varchar(100)">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="index_values_pk"/>
+			</column>
+			<column name="value_date" type="timestamp">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="index_values_pk"/>
+			</column>
+			<column name="value" type="decimal">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		
+		<rollback>
+			<dropTable tableName="index_values"/>
+		</rollback>
+	</changeSet>
+	
+	<changeSet id="201403301529" author="sis_azarnowski">
+		<preConditions onFail="MARK_RAN" onFailMessage="Table USERS already exists">
+			<not>
+				<tableExists tableName="users"/>
+			</not>
+		</preConditions>
+		<comment>Creates USERS table</comment>
+		
+		<createTable tableName="users">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" primaryKeyName="users_pk"/>
+			</column>
+			<column name="login" type="varchar(100)">
+				<constraints nullable="false" unique="true" uniqueConstraintName="users_login_unique"/>
+			</column>
+			<column name="password" type="varchar(100)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="is_admin" type="boolean">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		
+		<rollback>
+			<dropTable tableName="users"/>
+		</rollback>
+	</changeSet>
+	
+	<changeSet id="201403301530" author="sis_azarnowski">
+		<preConditions onFail="MARK_RAN" onFailMessage="Table AVAILABLE_INDEXES already exists">
+			<not>
+				<tableExists tableName="available_indexes"/>
+			</not>
+		</preConditions>
+		<comment>Creates AVAILABLE_INDEXES table</comment>
+		
+		<createTable tableName="available_indexes">
+			<column name="user_id" type="bigint">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="available_indexes_pk" />
+			</column>
+			<column name="index_symbol" type="varchar(100)">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="available_indexes_pk"/>
+			</column>
+		</createTable>
+		
+		<rollback>
+			<dropTable tableName="available_indexes"/>
+		</rollback>
+	</changeSet>
+	
+	<changeSet id="201403301531" author="sis_azarnowski">
+		<preConditions onFail="MARK_RAN" onFailMessage="AVAILABLE_INDEXES_INDEX_SYMBOL_FK already exists">
+			<not>
+				<foreignKeyConstraintExists foreignKeyName="available_indexes_index_symbol_fk"/>
+			</not>
+		</preConditions>
+		<comment>Creates AVAILABLE_INDEXES_INDEX_SYMBOL_FK FK</comment>
+		
+		<addForeignKeyConstraint constraintName="available_indexes_index_symbol_fk" referencedColumnNames="symbol" referencedTableName="indexes" baseColumnNames="index_symbol" baseTableName="available_indexes" />
+		
+		<rollback>
+			<dropForeignKeyConstraint baseTableName="baseTableName" constraintName="available_indexes_index_symbol_fk"/>
+		</rollback>
+	</changeSet>
+	
+	<changeSet id="201403301532" author="sis_azarnowski">
+		<preConditions onFail="MARK_RAN" onFailMessage="AVAILABLE_INDEXES_USER_ID_FK already exists">
+			<not>
+				<foreignKeyConstraintExists foreignKeyName="available_indexes_user_id_fk"/>
+			</not>
+		</preConditions>
+		<comment>Creates AVAILABLE_INDEXES_USER_ID_FK FK</comment>
+		
+		<addForeignKeyConstraint constraintName="available_indexes_user_id_fk" referencedColumnNames="id" referencedTableName="users" baseColumnNames="user_id" baseTableName="available_indexes" />
+		
+		<rollback>
+			<dropForeignKeyConstraint baseTableName="baseTableName" constraintName="available_indexes_user_id_fk"/>
+		</rollback>
+	</changeSet>
+</databaseChangeLog>

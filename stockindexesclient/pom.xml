@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>pl.edu.agh.iosr.sis</groupId>
-	<artifactId>stock-indexes-client</artifactId>
+	<groupId>stockindexesclient</groupId>
+	<artifactId>stockindexesclient</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
 	<name>stockindexesclient</name>
@@ -21,6 +21,7 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<spring.version>4.0.2.RELEASE</spring.version>
+		<liquibase.version>3.0.5</liquibase.version>
 		<sonar.jdbc.url>jdbc:postgresql://127.0.0.1:5432/sonar</sonar.jdbc.url>
 		<sonar.jdbc.driver>org.postgresql.Driver</sonar.jdbc.driver>
 		<sonar.jdbc.username>adminvvsarkw</sonar.jdbc.username>
@@ -92,7 +93,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.4.Final</version>
+			<version>4.2.11.Final</version>
 		</dependency>
 
 		<!-- HSQLDB -->
@@ -102,6 +103,17 @@
 			<version>2.3.1</version>
 			<type>jar</type>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901.jdbc4</version>
 		</dependency>
 
 		<dependency>
