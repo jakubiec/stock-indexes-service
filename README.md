@@ -1,4 +1,3 @@
-stock-indexes-service
-=====================
+The OpenShift `jbossas` cartridge documentation can be found at:
 
-PaaS with stock indexes broker and SaaS with stock indexes report service
+https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-jbossas/README.md
