@@ -4,7 +4,7 @@
 	<groupId>stockindexesclient</groupId>
 	<artifactId>stockindexesclient</artifactId>
 	<packaging>war</packaging>
-	<version>1.0</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>stockindexesclient</name>
 
 	<developers>
@@ -193,4 +193,16 @@
 			</plugin>
 		</plugins>
 	</reporting>
+	<ciManagement>
+		<url>https://drone.io/github.com/jakubiec/stock-indexes-service</url>
+		<system>Drone</system>
+	</ciManagement>
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/jakubiec/stock-indexes-service/issues</url>
+	</issueManagement>
+	<scm>
+		<url>https://github.com/jakubiec/stock-indexes-service/</url>
+	</scm>
+	<url>https://github.com/jakubiec/stock-indexes-service</url>
 </project>
