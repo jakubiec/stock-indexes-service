@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import pl.edu.agh.iosr.sis.core.entities.User;
 
+@Transactional
 public interface UserDAO extends Repository<User, Long> {
 
 	User save(User entity);
