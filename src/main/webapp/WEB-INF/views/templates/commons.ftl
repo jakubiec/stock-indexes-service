@@ -8,7 +8,7 @@
 	<title>Basic Bootstrap Template</title>
 	
 	<link rel="shortcut icon" href="<@spring.url '/resources/images/favicon.ico'/>">
-	<link rel="stylesheet" type="text/css" href="<@spring.url '/resources/css/bootstrap.min.css'/>">
+	<link rel="stylesheet" type="text/css" href="<@spring.url '/resources/styles/bootstrap.min.css'/>">
 	
 	<#nested>
 	
