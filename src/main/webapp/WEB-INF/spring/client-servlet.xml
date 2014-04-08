@@ -18,10 +18,7 @@
 <!-- 	<mvc:default-servlet-handler /> -->
 
 	<!-- resources mapping -->
-	<mvc:resources location="/images/" mapping="/images/*" />
-	<mvc:resources location="/styles/" mapping="/styles/*" />
-	<mvc:resources location="/scritps/" mapping="/scripts/*" />
-	<mvc:resources location="/fonts/" mapping="/fonts/*" />
+	<mvc:resources location="/resources/" mapping="/resources/**" />
 
 	<!-- freemarker config -->
 	<bean id="freemarkerConfig"
