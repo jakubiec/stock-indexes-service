@@ -1,4 +1,4 @@
-<#import "templates/spring.ftl" as spring>
+<#import "spring.ftl" as spring>
 
 <#macro header>
 <html>
