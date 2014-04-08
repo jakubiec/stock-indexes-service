@@ -1,8 +1,8 @@
 <#import "templates/spring.ftl" as spring>
 <#import "templates/commons.ftl" as c>
 
-<@c.head>
-</@c.head>
+<@c.header>
+</@c.header>
 
 <h1>Stock Indexes Client</h1>
 
