@@ -21,6 +21,7 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<spring.version>4.0.2.RELEASE</spring.version>
+		<spring.security.version>3.2.3.RELEASE</spring.security.version>
 		<liquibase.version>3.0.5</liquibase.version>
 		<sonar.jdbc.url>jdbc:postgresql://127.0.0.1:5432/sonar</sonar.jdbc.url>
 		<sonar.jdbc.driver>org.postgresql.Driver</sonar.jdbc.driver>
@@ -87,6 +88,22 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>1.5.1.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
 		</dependency>
 
 		<!-- HIBERNATE -->

@@ -8,4 +8,22 @@
 		http://www.springframework.org/schema/security/spring-security-3.2.xsd
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:component-scan base-package="pl.edu.agh.iosr.sis.client.authentication" />
+
+	<http auto-config="true">
+		<intercept-url pattern="/loginsuccess" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/loginfailed" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/logout" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/*" access="ROLE_USER" />
+		<form-login login-page="/login" default-target-url="/index"
+			authentication-failure-url="/loginfailed" />
+		<logout logout-success-url="/logout" />
+	</http>
+
+	<authentication-manager>
+		<authentication-provider ref="customAuthenticationProvider" />
+	</authentication-manager>
+
 </beans:beans>

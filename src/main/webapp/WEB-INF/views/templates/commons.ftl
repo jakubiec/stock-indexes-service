@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Basic Bootstrap Template</title>
+	<title>Stock Indexes Client</title>
 	
 	<link rel="shortcut icon" href="<@spring.url '/resources/images/favicon.ico'/>">
 	<link rel="stylesheet" type="text/css" href="<@spring.url '/resources/styles/bootstrap.min.css'/>">
