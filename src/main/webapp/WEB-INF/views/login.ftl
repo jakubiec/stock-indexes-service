@@ -14,7 +14,7 @@
 </@c.header>
 
 	<div class="container" >
-		<form class="form-horizontal" method="post" action="<@spring.url '/j_spring_security_check'/>">
+		<form class="form-horizontal" >
 			<fieldset>
 
 				<legend>Please, log in</legend>
@@ -27,14 +27,14 @@
 	
 				<div class="form-group">
 					<div class="col-md-6">
-						<input id="password" name="j_password" type="password" placeholder="Password" class="form-control input-md" required="Provide password">
+						<input id="password" name="j_password" type="password" placeholder="Password" class="form-control input-md" required="">
 					</div>
 				</div>
 	
 				<div class="form-group">
 					<div class="col-md-8">
-						<button id="logIn" name="logIn" class="btn btn-primary">Log In</button>
-						<button id="signUp" name="signUp" class="btn btn-inverse">Sign Up</button>
+						<button id="logIn" name="logIn" class="btn btn-primary" formaction="<@spring.url '/j_spring_security_check'/>" formmethod="post">Log In</button>
+						<button id="signUp" name="signUp" class="btn btn-inverse" onclick="window.location.href='<@spring.url '/user/showCreateUser'/>'">Sign Up</button>
 					</div>
 				</div>
 
@@ -42,6 +42,4 @@
 		</form>
 	</div>
 
-<@c.footer>
-	<script type="text/JavaScript" src="<@spring.url '/resources/scripts/login.js'/>"></script>
-</@c.footer>
+<@c.footer/>

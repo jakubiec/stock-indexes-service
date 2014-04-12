@@ -16,11 +16,15 @@
 		<intercept-url pattern="/loginfailed" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/logout" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/user/createUser" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/user/showCreateUser" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/*" access="ROLE_USER" />
 		<form-login login-page="/login" default-target-url="/index"
 			authentication-failure-url="/loginfailed" />
 		<logout logout-success-url="/logout" />
 	</http>
+
+	<beans:bean id="jasyptPasswordEncryptor" class="org.jasypt.util.password.StrongPasswordEncryptor" />
 
 	<authentication-manager>
 		<authentication-provider ref="customAuthenticationProvider" />
