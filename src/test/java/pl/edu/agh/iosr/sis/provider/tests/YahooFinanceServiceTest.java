@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import pl.edu.agh.iosr.sis.provider.exceptions.DownloadException;
-import pl.edu.agh.iosr.sis.provider.services.YahooFinanceService;
+import pl.edu.agh.iosr.sis.provider.services.YahooFinanceDownloader;
 
 public class YahooFinanceServiceTest {
 	
@@ -17,7 +17,7 @@ public class YahooFinanceServiceTest {
 	
 	@Test
 	public void getIndexValueTest() throws DownloadException{
-		Map<String, BigDecimal> result = YahooFinanceService.getIndexValue(FAKE_SYMBOL1,FAKE_SYMBOL2);
+		Map<String, BigDecimal> result = YahooFinanceDownloader.getIndexValue(FAKE_SYMBOL1,FAKE_SYMBOL2);
 		Assert.assertTrue(result.size() == 2);
 		Assert.assertTrue(result.containsKey(FAKE_SYMBOL1));
 		Assert.assertTrue(result.containsKey(FAKE_SYMBOL2));
@@ -28,11 +28,11 @@ public class YahooFinanceServiceTest {
 	
 	@Test(expected=DownloadException.class)
 	public void getIndexValueNullTest() throws DownloadException{
-		YahooFinanceService.getIndexValue((String[])null);
+		YahooFinanceDownloader.getIndexValue((String[])null);
 	}
 	
 	@Test(expected=DownloadException.class)
 	public void getIndexValueEmptylTest() throws DownloadException{
-		YahooFinanceService.getIndexValue(new String[0]);
+		YahooFinanceDownloader.getIndexValue(new String[0]);
 	}
 }

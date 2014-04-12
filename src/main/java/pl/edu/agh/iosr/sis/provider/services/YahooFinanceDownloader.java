@@ -23,7 +23,7 @@ import com.csvreader.CsvReader;
  * @author Konrad Jakubiec
  *
  */
-public class YahooFinanceService {
+public class YahooFinanceDownloader {
 
 	private static final String URI = "http://finance.yahoo.com/d/quotes.csv?s=";
 	private static final String OPTIONS = "&f=sl1";

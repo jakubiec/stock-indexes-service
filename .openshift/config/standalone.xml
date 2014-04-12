@@ -433,6 +433,10 @@
                         <entry name="queue/myQueue"/>
                         <entry name="java:jboss/exported/jms/queue/myQueue"/>
                     </jms-queue>
+                    <jms-queue name="indexesQueue">
+                        <entry name="queue/indexesQueue"/>
+                        <entry name="java:jboss/exported/jms/queue/indexesQueue"/>
+                    </jms-queue>
                     <jms-topic name="myTopic">
                         <entry name="topic/myTopic"/>
                         <entry name="java:jboss/exported/jms/topic/myTopic"/>
