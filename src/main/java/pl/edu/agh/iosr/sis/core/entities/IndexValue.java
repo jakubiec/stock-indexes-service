@@ -1,5 +1,6 @@
 package pl.edu.agh.iosr.sis.core.entities;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -19,7 +20,12 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="index_values")
 @IdClass(IndexValueId.class)
-public class IndexValue {
+public class IndexValue implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5582113408050083704L;
 
 	@Id
 	private String symbol;

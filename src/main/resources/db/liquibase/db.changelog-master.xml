@@ -127,4 +127,19 @@
 			<dropForeignKeyConstraint baseTableName="baseTableName" constraintName="available_indexes_user_id_fk"/>
 		</rollback>
 	</changeSet>
+	
+		<changeSet id="201403301533" author="konrad">
+		<preConditions onFail="MARK_RAN" onFailMessage="GOOG and FB index already inserted">		
+				<sqlCheck expectedResult="0">SELECT COUNT(1) FROM indexes WHERE symbol = 'GOOG'</sqlCheck>
+				<sqlCheck expectedResult="0">SELECT COUNT(1) FROM indexes WHERE symbol = 'FB'</sqlCheck>					
+		</preConditions>
+		
+		<comment>Inserts GOOG and FB stok indexes</comment>
+		
+		<insert tableName="indexes"><column name="symbol" value="GOOG"></column></insert>
+		<insert tableName="indexes"><column name="symbol" value="FB"></column></insert>
+		<rollback>
+			<delete tableName="indexes"> <where>symbol='GOOG' OR symbol='FB'</where></delete>
+		</rollback>
+	</changeSet>
 </databaseChangeLog>

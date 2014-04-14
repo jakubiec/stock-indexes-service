@@ -2,16 +2,73 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://www.springframework.org/schema/jms"
 	xmlns:p="http://www.springframework.org/schema/p" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
         http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<jee:jndi-lookup id="connectionFactory" jndi-name="java:/JmsXA" />
 	<jee:jndi-lookup id="indexesQueue" jndi-name="java:/queue/indexesQueue" />
+	<jee:jndi-lookup id="indexesTopic" jndi-name="java:/topic/indexesTopic" />
+
+	<context:component-scan base-package="pl.edu.agh.iosr.sis.client.services" />
+	<context:component-scan base-package="pl.edu.agh.iosr.sis.provider.services" />
+	<context:annotation-config />
+
 
 	<bean id="jmsQueueTemplate" class="org.springframework.jms.core.JmsTemplate">
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="defaultDestination" ref="indexesQueue" />
+	</bean>
+
+	<bean id="jmsTopicTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="defaultDestination" ref="indexesTopic" />
+	</bean>
+
+	<bean id="indexDistributor" class="pl.edu.agh.iosr.sis.provider.services.IndexDistributor">
+		<property name="jmsTemplate" ref="jmsTopicTemplate" />
+	</bean>
+
+	<bean id="queueMessageListener"
+		class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<constructor-arg ref="indexDistributor" />
+		<property name="defaultListenerMethod" value="receiveAndSend" />
+
+	</bean>
+
+	<bean id="jmsQueueContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="indexesQueue" />
+		<property name="messageListener" ref="queueMessageListener" />
+	</bean>
+
+
+	<bean id="topicMessageListener" 
+		class="org.springframework.jms.listener.adapter.MessageListenerAdapter" scope="prototype">
+		<constructor-arg>
+			<bean class="pl.edu.agh.iosr.sis.client.services.IndexConsumer" scope="prototype" />
+		</constructor-arg>
+		<property name="defaultListenerMethod" value="receive" />
+	</bean>
+
+
+
+	<bean id="topicContainerBeanFactory"
+		class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+		<property name="targetBeanName" value="jmsTopicContainer" />
+	</bean>
+
+	<bean id="jmsTopicContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer"
+		scope="prototype">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="autoStartup" value="false" />
+		<property name="destination" ref="indexesTopic" />
+		<property name="messageListener" ref="topicMessageListener" />
 	</bean>
 
 </beans>

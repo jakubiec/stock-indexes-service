@@ -13,6 +13,7 @@
 	
 	<button id="usersButton" type="button" class="btn btn-default">Users</button>
 	<button id="jmsButton" type="button" class="btn btn-default">JMS</button>
+	<button id="indexesButton" type="button" class="btn btn-default">Indexes</button>
 	<button id="logoutButton" type="button" class="btn btn-default">Log out</button>
 </div>
 
@@ -23,6 +24,9 @@
 		});
 		$('#jmsButton').click(function () {
 			location.href = "<@spring.url '/jmsExample'/>"
+		});
+		$('#indexesButton').click(function () {
+			location.href = "<@spring.url '/indexes'/>"
 		});
 		$('#logoutButton').click(function () {
 			location.href = "<@spring.url '/j_spring_security_logout'/>"

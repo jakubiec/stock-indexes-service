@@ -20,7 +20,8 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring/spring.persistence-cfg.xml,
-			/WEB-INF/spring/spring.security-cfg.xml			
+			/WEB-INF/spring/spring.security-cfg.xml,
+			/WEB-INF/spring/spring.jms-cfg.xml			
 		</param-value>
 	</context-param>
 

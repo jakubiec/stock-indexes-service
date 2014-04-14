@@ -441,6 +441,10 @@
                         <entry name="topic/myTopic"/>
                         <entry name="java:jboss/exported/jms/topic/myTopic"/>
                     </jms-topic>
+                    <jms-topic name="indexesTopic">
+                        <entry name="topic/indexesTopic"/>
+                        <entry name="java:jboss/exported/jms/topic/indexesTopic"/>
+                    </jms-topic>
                 </jms-destinations>
             </hornetq-server>
         </subsystem>
