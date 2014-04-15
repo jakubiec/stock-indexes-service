@@ -1,7 +1,7 @@
 <#import "templates/spring.ftl" as spring>
 <#import "templates/commons.ftl" as c>
 
-<@c.header>
+<@c.plainHeader>
 	<style>
 		body {
 			padding-top: 40px;
@@ -11,7 +11,7 @@
 			margin: 0 auto;
 		}
 	</style>
-</@c.header>
+</@c.plainHeader>
 
 	<div class="container" >
 		<@spring.bind "userCommand"/>

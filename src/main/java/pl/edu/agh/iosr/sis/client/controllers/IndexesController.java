@@ -29,26 +29,29 @@ public class IndexesController {
 
 	@Autowired
 	private IndexDAO indexDAO;
-	
+
 	@Autowired
 	private IndexValueDAO indexValueDAO;
 
 	@Autowired
 	private IndexProducer indexProducer;
 
+	@Autowired
+	private ControllerCommons controllerCommons;
+
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView indexes() {
 		// jmsTest();
 		IndexCommand indexCommand = new IndexCommand();
 		indexCommand.setIndexesMap(createMap());
-		ModelAndView mv = new ModelAndView("indexes");
+		ModelAndView mv = controllerCommons.createMAV("indexes");
 		mv.addObject("indexCommand", indexCommand);
 		return mv;
 	}
 
 	private Map<String, String> createMap() {
 		Map<String, String> map = new HashMap<String, String>();
-		for (Index indx : indexDAO.findAll())
+		for ( Index indx : indexDAO.findAll() )
 			map.put(indx.getSymbol(), indx.getSymbol());
 		return map;
 	}
@@ -64,11 +67,10 @@ public class IndexesController {
 	}
 
 	@RequestMapping(value = "/values", method = RequestMethod.POST)
-	public ModelAndView chooseIndex(@ModelAttribute IndexCommand indexCommand,
-			BindingResult bindingResult) {
+	public ModelAndView chooseIndex(@ModelAttribute IndexCommand indexCommand, BindingResult bindingResult) {
 		indexCommand.setIndexesMap(createMap());
 		indexCommand.setIndexValues(indexValueDAO.findBySymbol(indexCommand.getSymbol()));
-		ModelAndView mv = new ModelAndView("indexes");
+		ModelAndView mv = controllerCommons.createMAV("indexes");
 		mv.addObject("indexCommand", indexCommand);
 		return mv;
 	}

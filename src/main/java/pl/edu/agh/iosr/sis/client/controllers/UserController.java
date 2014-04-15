@@ -21,31 +21,34 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	@Autowired
-	private PasswordEncryptor passwordEncryptor; 
-	
+	private PasswordEncryptor passwordEncryptor;
+
+	@Autowired
+	private ControllerCommons controllerCommons;
+
 	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
 	public ModelAndView createUser(@Valid UserCommand user, BindingResult result) {
-		if (result.hasErrors()) {
+		if ( result.hasErrors() ) {
 			return new ModelAndView("signUp", result.getModel());
 		}
-		
-		if (userDAO.findByLogin(user.getLogin()) != null) {
+
+		if ( userDAO.findByLogin(user.getLogin()) != null ) {
 			ModelAndView mav = new ModelAndView("signUp", result.getModel());
 			mav.addObject("userExists", "User " + user.getLogin() + " already exists!;");
 			return mav;
 		}
-		
+
 		String encryptedPassword = passwordEncryptor.encryptPassword(user.getPassword());
-		
+
 		User newUser = new User();
 		newUser.setLogin(user.getLogin());
 		newUser.setPassword(encryptedPassword);
 		newUser.setIsAdmin(false);
-		
+
 		userDAO.save(newUser);
-		
+
 		return new ModelAndView("login");
 	}
 
@@ -55,5 +58,5 @@ public class UserController {
 		model.addAttribute("userCommand", new UserCommand());
 		return new ModelAndView("signUp", model);
 	}
-	
+
 }

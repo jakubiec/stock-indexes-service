@@ -1,8 +1,7 @@
 <#import "templates/spring.ftl" as spring>
 <#import "templates/commons.ftl" as c>
 
-<@c.header>
-</@c.header>
+<@c.header/>
 
 <div class="container" >
 	<div class="page-header">
@@ -10,26 +9,6 @@
 	</div>
 	
 	<h3>Welcome</h3>
-	
-	<button id="usersButton" type="button" class="btn btn-default">Users</button>
-	<button id="jmsButton" type="button" class="btn btn-default">JMS</button>
-	<button id="indexesButton" type="button" class="btn btn-default">Indexes</button>
-	<button id="logoutButton" type="button" class="btn btn-default">Log out</button>
 </div>
 
-<@c.footer>
-	<script type="text/javascript">
-		$('#usersButton').click(function () {
-			location.href = "<@spring.url '/users'/>";
-		});
-		$('#jmsButton').click(function () {
-			location.href = "<@spring.url '/jmsExample'/>"
-		});
-		$('#indexesButton').click(function () {
-			location.href = "<@spring.url '/indexes'/>"
-		});
-		$('#logoutButton').click(function () {
-			location.href = "<@spring.url '/j_spring_security_logout'/>"
-		});
-	</script>
-</@c.footer>
+<@c.footer/>

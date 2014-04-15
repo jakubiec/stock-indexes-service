@@ -9,6 +9,8 @@
             http://www.springframework.org/schema/context 
 			http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
+	<import resource="application.menu-config.xml"/>
+	
 	<context:component-scan base-package="pl.edu.agh.iosr.sis.client.controllers">
 		<context:include-filter expression="org.springframework.stereotype.Controller"
 			type="annotation" />

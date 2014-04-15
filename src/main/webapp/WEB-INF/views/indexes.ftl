@@ -1,6 +1,7 @@
 <#import "templates/spring.ftl" as spring>
 <#import "templates/commons.ftl" as c>
 
+<@c.header/>
 <h1>Indexes</h1>
 
 
@@ -21,3 +22,5 @@
 	</table>
 
 </#if>
+
+<@c.footer/>

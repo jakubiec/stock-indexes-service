@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/util
+			http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<util:list id="applicationMenu" >
+		<bean class="pl.edu.agh.iosr.sis.client.menu.MenuItem">
+			<property name="url" value="/index"/>
+			<property name="label" value="Home"/>
+			<property name="requiredRoles">
+				<list value-type="java.lang.String">
+					<value>ROLE_USER</value>
+				</list>
+			</property>
+		</bean>	
+		<bean class="pl.edu.agh.iosr.sis.client.menu.MenuItem">
+			<property name="url" value="/indexes"/>
+			<property name="label" value="Indexes"/>
+			<property name="requiredRoles">
+				<list value-type="java.lang.String">
+					<value>ROLE_USER</value>
+				</list>
+			</property>
+		</bean>	
+		<bean class="pl.edu.agh.iosr.sis.client.menu.MenuItem">
+			<property name="url" value="#"/>
+			<property name="label" value="Admin"/>
+			<property name="requiredRoles">
+				<list value-type="java.lang.String">
+					<value>ROLE_USER</value>
+					<value>ROLE_ADMIN</value>
+				</list>
+			</property>
+			<property name="itemsSublist">
+				<list>
+					<bean class="pl.edu.agh.iosr.sis.client.menu.MenuItem">
+						<property name="url" value="#"/>
+						<property name="label" value="Users"/>
+						<property name="requiredRoles">
+							<list value-type="java.lang.String">
+								<value>ROLE_USER</value>
+								<value>ROLE_ADMIN</value>
+							</list>
+						</property>
+					</bean>
+					<bean class="pl.edu.agh.iosr.sis.client.menu.MenuItem">
+						<property name="url" value="#"/>
+						<property name="label" value="Indexes Management"/>
+						<property name="requiredRoles">
+							<list value-type="java.lang.String">
+								<value>ROLE_USER</value>
+								<value>ROLE_ADMIN</value>
+							</list>
+						</property>
+					</bean>
+				</list>
+			</property>
+		</bean>	
+	</util:list>
+
+</beans>
