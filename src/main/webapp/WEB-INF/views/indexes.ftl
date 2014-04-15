@@ -1,15 +1,23 @@
+<#import "templates/spring.ftl" as spring>
+<#import "templates/commons.ftl" as c>
+
 <h1>Indexes</h1>
 
 
-<form id="chooseIndex" name="chooseIndexForm" method="post" action="chooseIndex">
-<div>
-Indexes:
-  
-<select id="indexesList"  >
-    <#list indexesList as indx>
-        <option value="${indx.symbol}">${indx.symbol}</option>
-    </#list>
-</select>
-</div>
-<input type="submit" value="Choose index">
+<@spring.bind "indexCommand" />
+
+<form class="form-horizontal" >
+    <@spring.formSingleSelect "indexCommand.symbol", indexCommand.indexesMap, 'class="form-control"' />
+    <button id="chooseIndex" name="chooseIndex" class="btn btn-primary" formaction="<@spring.url '/indexes/values'/>" formmethod="post">Choose index</button>
 </form>
+
+<#if indexCommand.symbol??>
+
+	<table>
+		<tr> <th>Date</th> <th>Value</th> </tr>
+		<#list indexCommand.indexValues as indexValue>
+			<tr> <td> ${indexValue.valueDate} </td> <td>${indexValue.value}</td> </tr>
+		</#list>
+	</table>
+
+</#if>

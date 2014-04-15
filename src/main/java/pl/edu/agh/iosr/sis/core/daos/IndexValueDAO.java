@@ -19,5 +19,7 @@ public interface IndexValueDAO extends Repository<IndexValue, IndexValueId> {
 	@Query("SELECT i FROM IndexValue i WHERE i.symbol = :symbol AND i.valueDate <= :end AND i.valueDate >= :start ")
 	List<IndexValue> findInPeriod(@Param("symbol") String symbol,
 			@Param("start") Date start, @Param("end") Date end);
+	
+	List<IndexValue> findBySymbol(@Param("symbol") String symbol);
 
 }
