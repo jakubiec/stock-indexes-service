@@ -70,8 +70,10 @@ public class IndexesController {
 	public ModelAndView chooseIndex(@ModelAttribute IndexCommand indexCommand, BindingResult bindingResult) {
 		indexCommand.setIndexesMap(createMap());
 		indexCommand.setIndexValues(indexValueDAO.findBySymbol(indexCommand.getSymbol()));
+
 		ModelAndView mv = controllerCommons.createMAV("indexes");
-		mv.addObject("indexCommand", indexCommand);
+		mv.addAllObjects(bindingResult.getModel());
+
 		return mv;
 	}
 
