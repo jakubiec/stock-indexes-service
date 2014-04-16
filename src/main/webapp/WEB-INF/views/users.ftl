@@ -16,8 +16,12 @@
 	        <tbody>
 	        	<#list page.getContent() as user>
 	            <tr>
-	            	<td>${user.id}</td>
-	            	<td>${user.login}</td>
+	            	<td>
+	            		<a href="<@spring.url '/user/edit/${user.id}'/>">${user.id}</a>
+	            	</td>
+	            	<td>
+	            		<a href="<@spring.url '/user/edit/${user.id}'/>">${user.login}</a>
+	            	</td>
 	            </tr>
 	            </#list>
 	        </tbody>

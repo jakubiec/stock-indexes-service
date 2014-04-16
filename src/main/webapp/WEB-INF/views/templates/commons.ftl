@@ -38,7 +38,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="#" class="navbar-brand">Stock Indexes Client</a>
+		<a href="<@spring.url '/index'/>" class="navbar-brand">Stock Indexes Client</a>
 	</div>
 
 	<div id="navbarCollapse" class="collapse navbar-collapse navbar-responsive-collapse">

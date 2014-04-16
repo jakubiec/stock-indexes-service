@@ -22,4 +22,7 @@ public interface UserDAO extends Repository<User, Long> {
 
 	@Query("SELECT u FROM User u WHERE u.login = :login")
 	User findByLogin(@Param("login") String login);
+
+	@Query("SELECT u FROM User u WHERE u.id = :id")
+	User findById(@Param("id") Long id);
 }

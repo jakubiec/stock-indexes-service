@@ -57,7 +57,7 @@ public class UserController {
 
 		userDAO.save(newUser);
 
-		return new ModelAndView(SORTING_FIELD);
+		return new ModelAndView("login");
 	}
 
 	@RequestMapping("/create/form")
@@ -83,6 +83,19 @@ public class UserController {
 		mav.addObject("currentIndex", currentPage);
 		mav.addObject("endIndex", end);
 
+		return mav;
+	}
+	
+	@RequestMapping("/edit/{userId}")
+	public ModelAndView edit(@PathVariable Long userId) {
+		User user = userDAO.findById(userId);
+		
+		if (user == null) {
+			return controllerCommons.createMAV("index");
+		}
+		
+		ModelAndView mav = controllerCommons.createMAV("editUser");
+		mav.addObject("command", user);
 		return mav;
 	}
 }
