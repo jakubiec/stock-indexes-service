@@ -47,7 +47,7 @@
 				<@createMenu menuItem/>
 			</#list>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul style="margin-right: 0px;" class="nav navbar-nav navbar-right">
 			<li><span class="username">${username}</span></li>
 			<li><a href="<@spring.url '/j_spring_security_logout'/>">Log out</a></li>
         </ul>
