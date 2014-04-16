@@ -40,7 +40,7 @@
 			<property name="itemsSublist">
 				<list>
 					<bean class="pl.edu.agh.iosr.sis.client.menu.MenuItem">
-						<property name="url" value="#"/>
+						<property name="url" value="/user/users/1"/>
 						<property name="label" value="Users"/>
 						<property name="requiredRoles">
 							<list value-type="java.lang.String">

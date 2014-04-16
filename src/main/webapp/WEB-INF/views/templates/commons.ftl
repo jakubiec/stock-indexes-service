@@ -73,6 +73,32 @@
 </#if>
 </#macro>
 
+<#macro paginationBar page url beginIndex currentIndex endIndex>
+		<ul class="pagination">
+			<#if currentIndex == 1>
+				<li class="disabled"><a href="#">&laquo;</a></li>
+				<li class="disabled"><a href="#">&lt;</a></li>
+			<#else>
+				<li><a href="<@spring.url '${url}/1'/>">&laquo;</a></li>
+				<li><a href="<@spring.url '${url}/${currentIndex-1}'/>">&lt;</a></li>
+			</#if>
+			<#list beginIndex..endIndex as i>
+				<#if currentIndex == i>
+                    <li class="active"><a href="<@spring.url '${url}/${i}'/>">${i}</a></li>
+	             <#else>
+                    <li><a href="<@spring.url '${url}/${i}'/>">${i}</a></li>
+				</#if>
+			</#list>
+	        <#if currentIndex == page.totalPages>
+                <li class="disabled"><a href="#">&gt;</a></li>
+                <li class="disabled"><a href="#">&raquo;</a></li>
+			<#else>
+                <li><a href="<@spring.url '${url}/${currentIndex+1}'/>">&gt;</a></li>
+                <li><a href="<@spring.url '${url}/${page.totalPages}'/>">&raquo;</a></li>
+	        </#if>
+	    </ul>
+</#macro>
+
 <#macro footer>
 	<script type="text/JavaScript" src="<@spring.url '/resources/scripts/jquery-1.11.0.min.js'/>"></script>
 	<script type="text/JavaScript" src="<@spring.url '/resources/scripts/bootstrap.min.js'/>"></script>

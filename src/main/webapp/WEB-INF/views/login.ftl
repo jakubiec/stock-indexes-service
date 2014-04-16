@@ -34,7 +34,7 @@
 				<div class="form-group">
 					<div class="col-md-8">
 						<button id="logIn" name="logIn" class="btn btn-primary" formaction="<@spring.url '/j_spring_security_check'/>" formmethod="post">Log In</button>
-						<button id="signUp" name="signUp" class="btn btn-inverse" onclick="window.location.href='<@spring.url '/user/showCreateUser'/>'">Sign Up</button>
+						<button id="signUp" name="signUp" class="btn btn-inverse" onclick="window.location.href='<@spring.url '/user/create/form'/>'">Sign Up</button>
 					</div>
 				</div>
 

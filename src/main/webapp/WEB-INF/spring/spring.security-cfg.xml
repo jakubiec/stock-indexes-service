@@ -16,8 +16,8 @@
 		<intercept-url pattern="/loginfailed" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/logout" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<intercept-url pattern="/user/createUser" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<intercept-url pattern="/user/showCreateUser" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/user/create" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/user/create/form" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/*" access="ROLE_USER" />
 		<form-login login-page="/login" default-target-url="/index"
 			authentication-failure-url="/loginfailed" />

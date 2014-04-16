@@ -1,0 +1,38 @@
+<#import "templates/spring.ftl" as spring>
+<#import "templates/commons.ftl" as c>
+
+<@c.header />
+
+	<div class="container" >
+		<@c.paginationBar page '/user/users' beginIndex currentIndex endIndex/>
+		
+		<table class="table table-hover table-bordered" id="tableUsers">
+	        <thead>
+	            <tr>
+	                <th>Id</th>
+	                <th>Login</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        	<#list page.getContent() as user>
+	            <tr>
+	            	<td>${user.id}</td>
+	            	<td>${user.login}</td>
+	            </tr>
+	            </#list>
+	        </tbody>
+	    </table>
+		
+		<@c.paginationBar page '/user/users' beginIndex currentIndex endIndex/>
+	</div>
+
+<@c.footer>
+	<script type="text/JavaScript" src="<@spring.url '/resources/scripts/jquery.tablesorter.min.js'/>"></script>
+	<script>
+		$(document).ready(function(){
+			$(function(){
+				$("#tableUsers").tablesorter();
+			});
+		});
+	</script>
+</@c.footer>
