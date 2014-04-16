@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,7 +66,7 @@ public class IndexesController {
 	}
 
 	@RequestMapping(value = "/values", method = RequestMethod.POST)
-	public ModelAndView chooseIndex(@ModelAttribute IndexCommand indexCommand, BindingResult bindingResult) {
+	public ModelAndView chooseIndexPost(@ModelAttribute IndexCommand indexCommand, BindingResult bindingResult) {
 		indexCommand.setIndexesMap(createMap());
 		indexCommand.setIndexValues(indexValueDAO.findBySymbol(indexCommand.getSymbol()));
 
@@ -75,6 +74,12 @@ public class IndexesController {
 		mv.addAllObjects(bindingResult.getModel());
 
 		return mv;
+	}
+	
+	@RequestMapping(value = "/values", method = RequestMethod.GET)
+	public ModelAndView chooseIndexGet(@ModelAttribute IndexCommand indexCommand, BindingResult bindingResult) {
+		
+		return new ModelAndView("error");
 	}
 
 }

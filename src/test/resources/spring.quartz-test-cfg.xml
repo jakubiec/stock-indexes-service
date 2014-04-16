@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mockito="http://www.mockito.org/spring/mockito"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.mockito.org/spring/mockito http://www.mockito.org/spring/mockito.xsd">
+	
+	<bean id="produceStockIndexesDataTask" class="pl.edu.agh.iosr.sis.provider.schedule.ProduceStockIndexesDataTask" />
+	
+	<bean id="produceStockIndexesDataJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass"
+			value="pl.edu.agh.iosr.sis.provider.schedule.ProduceStockIndexesDataJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="task" value-ref="produceStockIndexesDataTask" />
+			</map>
+		</property>
+		 <property name="durability" value="true"/>
+	</bean>
+
+	<bean id="timeZone" class="java.util.TimeZone" factory-method="getTimeZone">
+		<constructor-arg value="EST" />
+	</bean>
+
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="produceStockIndexesDataJob" />
+		<property name="timeZone" ref="timeZone" />
+		<property name="cronExpression" value="0 0/5 7-20 * * ?" />
+	</bean>
+
+	<bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="produceStockIndexesDataJob" />
+			</list>
+		</property>
+		<property name="autoStartup" value="true"/>
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
+	
+	<mockito:mock id="indexProducer" class="pl.edu.agh.iosr.sis.provider.services.IndexProducer" />
+	<mockito:mock id="indexDAO" class="pl.edu.agh.iosr.sis.core.daos.IndexDAO" />
+
+</beans>

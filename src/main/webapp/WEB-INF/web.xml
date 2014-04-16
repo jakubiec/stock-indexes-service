@@ -22,6 +22,7 @@
 			/WEB-INF/spring/spring.persistence-cfg.xml,
 			/WEB-INF/spring/spring.security-cfg.xml,
 			/WEB-INF/spring/spring.jms-cfg.xml			
+			/WEB-INF/spring/spring.quartz-cfg.xml			
 		</param-value>
 	</context-param>
 
