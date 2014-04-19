@@ -8,10 +8,11 @@ import pl.edu.agh.iosr.sis.core.entities.IndexValue;
 public class IndexCommand {
 
 	private String symbol;
-	private Map<String,String> indexesMap;
+	private Map<String, String> indexesMap;
 	private List<IndexValue> indexValues;
-	
-	
+	private String startDate;
+	private String endDate;
+
 	public List<IndexValue> getIndexValues() {
 		return indexValues;
 	}
@@ -35,6 +36,21 @@ public class IndexCommand {
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
-	
-	
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
 }

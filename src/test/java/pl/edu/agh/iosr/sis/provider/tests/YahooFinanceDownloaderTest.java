@@ -9,7 +9,7 @@ import org.junit.Test;
 import pl.edu.agh.iosr.sis.provider.exceptions.DownloadException;
 import pl.edu.agh.iosr.sis.provider.services.YahooFinanceDownloader;
 
-public class YahooFinanceServiceTest {
+public class YahooFinanceDownloaderTest {
 	
 	private static final String FAKE_SYMBOL1 = "NOT_EXIST1";
 	private static final String FAKE_SYMBOL2 = "NOT_EXIST2";

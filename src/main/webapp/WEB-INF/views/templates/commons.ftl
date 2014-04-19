@@ -9,6 +9,7 @@
 	
 	<link rel="shortcut icon" href="<@spring.url '/resources/images/favicon.ico'/>">
 	<link rel="stylesheet" type="text/css" href="<@spring.url '/resources/styles/bootstrap.min.css'/>">
+	<link rel="stylesheet" type="text/css" href="<@spring.url '/resources/styles/datepicker.css'/>">
 	
 	<#nested>
 
@@ -102,7 +103,7 @@
 <#macro footer>
 	<script type="text/JavaScript" src="<@spring.url '/resources/scripts/jquery-1.11.0.min.js'/>"></script>
 	<script type="text/JavaScript" src="<@spring.url '/resources/scripts/bootstrap.min.js'/>"></script>
-	
+	<script type="text/JavaScript" src="<@spring.url '/resources/scripts/bootstrap-datepicker.js'/>"></script>
 	<#nested>
 </body>
 </html>

@@ -76,8 +76,8 @@ public class IndexValueDAOTest {
 	
 	@Test
 	public void findInPeriodTest() throws ParseException{
-		Date start = sdf.parse("2002-01-01 12:12:12");
-		Date end = sdf.parse("2016-01-01 12:12:12");
+		Date start = sdf.parse("2002-01-01 00:00:00");
+		Date end = sdf.parse("2016-01-30 00:00:00");
 		Assert.assertEquals(2, indexValueDAO.findInPeriod(TEST_SYMBOL, start, end).size());
 		
 		start = sdf.parse("2006-01-01 12:12:12");
@@ -88,6 +88,18 @@ public class IndexValueDAOTest {
 		start = sdf.parse("2009-01-01 12:12:12");
 		end = sdf.parse("2011-01-01 12:12:12");
 		Assert.assertEquals(0, indexValueDAO.findInPeriod(TEST_SYMBOL, start, end).size());
-		
+	
+	}
+	
+	@Test
+	public void getLastTest() throws ParseException {
+		Date last = indexValueDAO.getLastDate(TEST_SYMBOL);
+		Assert.assertEquals(sdf.parse("2008-08-08 20:08:08"), last);
+	}
+	
+	@Test
+	public void getFirstTest() throws ParseException {
+		Date last = indexValueDAO.getFirstDate(TEST_SYMBOL);
+		Assert.assertEquals(sdf.parse("2004-08-08 20:08:08"), last);
 	}
 }
