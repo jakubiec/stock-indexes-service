@@ -3,10 +3,8 @@
 
 <@c.plainHeader />
 
-<h1>Stock indexes client</h1>
+	<@c.info "Stock Indexes Client" "404." />
 
-<h3>404</h3>
-
-This page does not exist. Sorry. Another 404.
+	<span>This page does not exist. Sorry. Another 404.</span>
 
 <@c.footer/>

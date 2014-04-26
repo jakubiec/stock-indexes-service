@@ -61,7 +61,7 @@ public class UserController {
 
 		if ( userDAO.findByLogin(user.getLogin()) != null ) {
 			ModelAndView mav = new ModelAndView("signUp", result.getModel());
-			mav.addObject("userExists", "User " + user.getLogin() + " already exists!;");
+			mav.addObject("userExists", "User " + user.getLogin() + " already exists!");
 			return mav;
 		}
 

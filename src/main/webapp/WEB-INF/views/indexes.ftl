@@ -9,7 +9,6 @@
 	</style>
 </@c.header>
 
-<div class="container" >
 	<h1>Indexes</h1>
 	
 	<#if (indexCommand.indexesMap?size > 0)>
@@ -56,13 +55,8 @@
 		</#if>
 		</form>
 	<#else>
-		<div class="page-header">
-			<h1>No indexes found!</h1>
-		</div>
-
-		<h3>Currently there are no indexes you can browse.</h3>
+		<@c.info "No indexes found!" "Currently there are no indexes you can browse." />
 	</#if>
-</div>
 
 <@c.footer>
 	

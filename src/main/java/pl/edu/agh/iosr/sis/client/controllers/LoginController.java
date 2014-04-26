@@ -7,8 +7,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 
-	@RequestMapping({ "/login", "/loginfailed", "/logout" })
+	@RequestMapping({ "/login", "/logout" })
 	public ModelAndView login() {
 		return new ModelAndView("login");
+	}
+
+	@RequestMapping("/loginfailed")
+	public ModelAndView loginFailed() {
+		ModelAndView mav = new ModelAndView("login");
+		mav.addObject("loginError", "Login failed. Wrong credentials!");
+		return mav;
 	}
 }

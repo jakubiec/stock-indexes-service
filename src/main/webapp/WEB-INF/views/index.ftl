@@ -3,12 +3,6 @@
 
 <@c.header/>
 
-<div class="container" >
-	<div class="page-header">
-		<h1>Stock Indexes Client</h1>
-	</div>
-	
-	<h3>Welcome</h3>
-</div>
+	<@c.info "Stock Indexes Client" "Welcome" />
 
 <@c.footer/>

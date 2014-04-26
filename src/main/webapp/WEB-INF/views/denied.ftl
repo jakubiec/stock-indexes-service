@@ -3,12 +3,6 @@
 
 <@c.header/>
 
-<div class="container" >
-	<div class="page-header">
-		<h1>Access Denied!</h1>
-	</div>
-
-	<h3>You cannot acces requested page.</h3>
-</div>
+	<@c.info "Access Denied!" "You cannot acces requested page." />
 
 <@c.footer/>
