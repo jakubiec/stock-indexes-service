@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -82,11 +83,19 @@ public class IndexesController {
 	}
 
 	private void setDates(IndexCommand indexCommand) throws ParseException {
-		if ( indexCommand.getStartDate() == null )
-			indexCommand.setStartDate(format(indexValueDAO.getFirstDate(indexCommand.getSymbol())));
+		if ( indexCommand.getStartDate() == null ) {
+			Date date = indexValueDAO.getFirstDate(indexCommand.getSymbol());
+			if ( date != null ) {
+				indexCommand.setStartDate(format(date));
+			}
+		}
 
-		if ( indexCommand.getEndDate() == null )
-			indexCommand.setEndDate(format(indexValueDAO.getLastDate(indexCommand.getSymbol())));
+		if ( indexCommand.getEndDate() == null ) {
+			Date date = indexValueDAO.getLastDate(indexCommand.getSymbol());
+			if ( date != null ) {
+				indexCommand.setEndDate(format(date));
+			}
+		}
 	}
 
 	@RequestMapping(value = "/values", method = RequestMethod.GET)
