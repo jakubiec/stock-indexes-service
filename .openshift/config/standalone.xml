@@ -509,7 +509,10 @@
             <coordinator-environment default-timeout="300"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:web:1.1" default-virtual-server="default-host" native="false">
-            <connector name="http" protocol="HTTP/1.1" scheme="http" socket-binding="http"/>
+            <connector name="http" protocol="HTTP/1.1" scheme="http" socket-binding="http" redirect-port="8443"/>
+            <connector name="https" protocol="HTTP/1.1" scheme="https" socket-binding="https" secure="true">
+                <ssl name="kj-ssl" key-alias="kj" password="123456" certificate-key-file="${env.$OPENSHIFT_DATA_DIR}/keystore/kj.keystore" protocol="TLSv1"/>
+            </connector>
             <virtual-server name="default-host" enable-welcome-root="false">
                 <alias name="localhost"/>
             </virtual-server>
@@ -543,6 +546,7 @@
     </interfaces>
 
     <socket-binding-group name="standard-sockets" default-interface="public" port-offset="0">
+    	<socket-binding name="https" port="8443"/>
         <socket-binding name="http" port="${env.OPENSHIFT_JBOSSAS_HTTP_PORT}"/>
         <socket-binding name="jacorb" interface="unsecure" port="3528"/>
         <socket-binding name="jacorb-ssl" interface="unsecure" port="3529"/>

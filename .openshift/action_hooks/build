@@ -1,0 +1,3 @@
+echo Creating keystore
+mkdir  $OPENSHIFT_DATA_DIR/keystore
+cp kj.keystore $OPENSHIFT_DATA_DIR/keystore
