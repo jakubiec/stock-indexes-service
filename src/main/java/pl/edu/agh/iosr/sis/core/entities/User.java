@@ -80,6 +80,10 @@ public class User {
 		if (availableIndexes.contains(index))
 			availableIndexes.remove(index);
 	}
+	
+	public void clearAvailableIndexes() {
+		this.availableIndexes.clear();
+	}
 
 	public Set<Index> getAvailableIndexes() {
 		return availableIndexes;

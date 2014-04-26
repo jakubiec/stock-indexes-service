@@ -20,6 +20,8 @@ public interface UserDAO extends Repository<User, Long> {
 
 	Page<User> findAll(Pageable page);
 
+	void delete(User user);
+
 	@Query("SELECT u FROM User u WHERE u.login = :login")
 	User findByLogin(@Param("login") String login);
 

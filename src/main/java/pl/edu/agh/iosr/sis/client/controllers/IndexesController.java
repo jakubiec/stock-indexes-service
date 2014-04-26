@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -14,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import pl.edu.agh.iosr.sis.client.authentication.SecurityHelper;
 import pl.edu.agh.iosr.sis.client.commands.IndexCommand;
-import pl.edu.agh.iosr.sis.core.daos.IndexDAO;
 import pl.edu.agh.iosr.sis.core.daos.IndexValueDAO;
+import pl.edu.agh.iosr.sis.core.daos.UserDAO;
 import pl.edu.agh.iosr.sis.core.entities.Index;
+import pl.edu.agh.iosr.sis.core.entities.User;
 import pl.edu.agh.iosr.sis.provider.services.IndexProducer;
 
 @Controller
@@ -26,12 +30,10 @@ public class IndexesController {
 
 	private static final String LAST_HOUR = " 23:59:59";
 	private static final String FIRST_HOUR = " 00:00:00";
-	private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat(
-			"yyyy-MM-dd HH:mm:ss");
-	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(
-			"yyyy-MM-dd");
+	private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 	@Autowired
-	private IndexDAO indexDAO;
+	private UserDAO userDAO;
 
 	@Autowired
 	private IndexValueDAO indexValueDAO;
@@ -53,20 +55,26 @@ public class IndexesController {
 
 	private Map<String, String> createMap() {
 		Map<String, String> map = new HashMap<String, String>();
-		for (Index indx : indexDAO.findAll())
-			map.put(indx.getSymbol(), indx.getSymbol());
+
+		String login = SecurityHelper.getUsername();
+		User user = userDAO.findByLogin(login);
+		Set<Index> indexes = user == null ? null : user.getAvailableIndexes();
+
+		if ( CollectionUtils.isNotEmpty(indexes) ) {
+			for ( Index indx : indexes )
+				map.put(indx.getSymbol(), indx.getSymbol());
+		}
+
 		return map;
 	}
 
 	@RequestMapping(value = "/values", method = RequestMethod.POST)
-	public ModelAndView chooseIndexPost(
-			@ModelAttribute IndexCommand indexCommand,
-			BindingResult bindingResult) throws ParseException {
+	public ModelAndView chooseIndexPost(@ModelAttribute IndexCommand indexCommand, BindingResult bindingResult)
+			throws ParseException {
 		indexCommand.setIndexesMap(createMap());
 		setDates(indexCommand);
-		indexCommand.setIndexValues(indexValueDAO.findInPeriod(
-				indexCommand.getSymbol(), parse(indexCommand.getStartDate(), FIRST_HOUR),
-				parse(indexCommand.getEndDate(), LAST_HOUR)));
+		indexCommand.setIndexValues(indexValueDAO.findInPeriod(indexCommand.getSymbol(),
+				parse(indexCommand.getStartDate(), FIRST_HOUR), parse(indexCommand.getEndDate(), LAST_HOUR)));
 		ModelAndView mv = controllerCommons.createMAV("indexes");
 		mv.addAllObjects(bindingResult.getModel());
 
@@ -74,19 +82,15 @@ public class IndexesController {
 	}
 
 	private void setDates(IndexCommand indexCommand) throws ParseException {
-		if (indexCommand.getStartDate() == null)
-			indexCommand.setStartDate(format(indexValueDAO
-					.getFirstDate(indexCommand.getSymbol())));
+		if ( indexCommand.getStartDate() == null )
+			indexCommand.setStartDate(format(indexValueDAO.getFirstDate(indexCommand.getSymbol())));
 
-		if (indexCommand.getEndDate() == null)
-			indexCommand.setEndDate(format(indexValueDAO
-					.getLastDate(indexCommand.getSymbol())));
+		if ( indexCommand.getEndDate() == null )
+			indexCommand.setEndDate(format(indexValueDAO.getLastDate(indexCommand.getSymbol())));
 	}
 
 	@RequestMapping(value = "/values", method = RequestMethod.GET)
-	public ModelAndView chooseIndexGet(
-			@ModelAttribute IndexCommand indexCommand,
-			BindingResult bindingResult) {
+	public ModelAndView chooseIndexGet(@ModelAttribute IndexCommand indexCommand, BindingResult bindingResult) {
 
 		return new ModelAndView("error");
 	}

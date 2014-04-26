@@ -14,9 +14,10 @@
 </@c.plainHeader>
 
 	<div class="container" >
-		<@spring.bind "userCommand"/>
+		<@spring.bind "command"/>
 		<form class="form-horizontal" >
 			<fieldset>
+				<@spring.formHiddenInput 'command.isNew'/>
 
 				<legend>Sign up</legend>
 				
@@ -30,14 +31,14 @@
 				
 				<div class="form-group">
 					<div class="col-md-6">
-						<@spring.formInput "userCommand.login" 'placeholder="Username" class="form-control input-md" required=""'/>
+						<@spring.formInput "command.login" 'placeholder="Username" class="form-control input-md" required=""'/>
 						<@spring.showErrors "<br>" "help-block"/>
 					</div>
 				</div>
 	
 				<div class="form-group">
 					<div class="col-md-6">
-						<@spring.formPasswordInput "userCommand.password" 'placeholder="Password" class="form-control input-md" required=""'/>
+						<@spring.formPasswordInput "command.password" 'placeholder="Password" class="form-control input-md" required=""'/>
 						<@spring.showErrors "<br>" "help-block"/>
 					</div>
 				</div>

@@ -1,16 +1,25 @@
 package pl.edu.agh.iosr.sis.client.commands;
 
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import java.util.List;
 
 public class UserCommand {
 
-	@Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters")
-	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric with no spaces")
 	private String login;
 
-	@Size(min = 6, max = 20, message = "The password must be at least 6 characters long.")
 	private String password;
+
+	private List<String> indexes;
+
+	private Boolean isAdmin;
+
+	private Boolean isNew;
+
+	public UserCommand() {
+	}
+
+	public UserCommand(boolean isNew) {
+		this.isNew = isNew;
+	}
 
 	public String getLogin() {
 		return login;
@@ -26,6 +35,30 @@ public class UserCommand {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<String> getIndexes() {
+		return indexes;
+	}
+
+	public void setIndexes(List<String> indexes) {
+		this.indexes = indexes;
+	}
+
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public Boolean getIsNew() {
+		return isNew;
+	}
+
+	public void setIsNew(Boolean isNew) {
+		this.isNew = isNew;
 	}
 
 }

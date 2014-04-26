@@ -195,7 +195,7 @@
 	<@bind path/>
 	<select multiple="multiple" name="${status.expression}" ${attributes}>
 		<#list options?keys as value>
-		<#assign isSelected = contains(status.value?default([""]), value)>
+		<#assign isSelected = contains(status.actualValue?default([""]), value)>
 		<option value="${value}" <#if isSelected>selected="selected"</#if>>${options[value]}</option>
 		</#list>
 	</select>
@@ -238,7 +238,7 @@
 <#macro formCheckboxes path options separator attributes="">
 	<@bind path/>
 	<#list options?keys as value>
-	<#assign isSelected = contains(status.value?default([""]), value)>
+	<#assign isSelected = contains(status.actualValue?default([""]), value)>
 	<input type="checkbox" name="${status.expression}" value="${value}"
 		<#if isSelected>checked="checked"</#if> ${attributes}
 	<@closeTag/>
