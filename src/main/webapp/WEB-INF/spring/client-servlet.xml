@@ -17,7 +17,16 @@
 	</context:component-scan>
 
 	<mvc:annotation-driven />
-<!-- 	<mvc:default-servlet-handler /> -->
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/users/**"/>
+			<mvc:mapping path="/user/edit/**"/>
+			<mvc:mapping path="/user/update/**"/>
+			<mvc:mapping path="/user/delete/**"/>
+			<bean class="pl.edu.agh.iosr.sis.client.interceptors.AdminInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<!-- resources mapping -->
 	<mvc:resources location="/resources/" mapping="/resources/**" />

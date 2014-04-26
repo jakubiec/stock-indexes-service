@@ -49,6 +49,7 @@
 							</list>
 						</property>
 					</bean>
+					<!--
 					<bean class="pl.edu.agh.iosr.sis.client.menu.MenuItem">
 						<property name="url" value="#"/>
 						<property name="label" value="Indexes Management"/>
@@ -59,6 +60,7 @@
 							</list>
 						</property>
 					</bean>
+					 -->
 				</list>
 			</property>
 		</bean>	

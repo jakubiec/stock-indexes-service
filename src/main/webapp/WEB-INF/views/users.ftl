@@ -30,7 +30,11 @@
 		
 			<@c.paginationBar page '/user/users' beginIndex currentIndex endIndex/>
 		<#else>
-			<label>No users found</label>
+			<div class="page-header">
+				<h1>No users found!</h1>
+			</div>
+
+			<h3>Currently there are no users in system.</h3>
 		</#if>
 	</div>
 

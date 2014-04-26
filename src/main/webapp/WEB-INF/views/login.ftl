@@ -17,7 +17,7 @@
 		<form class="form-horizontal" >
 			<fieldset>
 
-				<legend>Please, log in</legend>
+				<legend>Please log in</legend>
 	
 				<div class="form-group">
 					<div class="col-md-6">
